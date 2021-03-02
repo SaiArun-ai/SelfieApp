@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-
+<script src = "https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.26/webcam.min.js"></script>
 <link href="style.css" rel="stylesheet">
 
 </head>
@@ -26,7 +26,12 @@
         <h4 style="color:red;">Please press allow as soon as popup comes. After you give a voice command</h4>
         
         <div class="form-group">
-            <h3>Say "take my selfie"</h3>
+            <h3>Fill The width,height and Chose your format and then Say "take my selfie"(If there is no height and width then they will be set to default)</h3>
+            <h3> Width:</h3><span><input id = "Width" placeholder="Type the width" class = "form-control" type = "number"></span>
+            <h3> Height:</h3><span><input id = "Height" placeholder="Type the height" class = "form-control" type = "number"></span>
+            <h3>Do you want a JPEG file?Type Yes or no</h3>
+            <input id = "Type" class = "form-control" placeholder = "Yes or no">
+            <br>
             <label>Your voice output : </label>
             <textarea class = "form-control" id = "textbox" readonly = true></textarea>
 
