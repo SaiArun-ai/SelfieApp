@@ -1,7 +1,7 @@
 var SpeechRecognition = window.webkitSpeechRecognition;
-var Type;
-var Width;
-var Height;
+var Type = null;
+var Width = null;
+var Height = null;
 var recognition = new SpeechRecognition();
 
 function start(){
@@ -12,39 +12,39 @@ function start(){
 recognition.onresult = function run (event) {
     var Content = event.results[0][0].transcript;
     document.getElementById("textbox").innerHTML = Content;
-    Speak();
-    Width = document.getElementById("Width").value;
-    console.log(Width);
-    if(Width == null){
-        Width = 350;
-    }
-    Height = document.getElementById("Height").value;
-    console.log(Height);
-    if(Height == null){
-        Height = 200;
-    }
-    GetType = document.getElementById("Type").value;
-    Type = GetType.toLowerCase();
-    if(Type == "yes"){
-        Type = "jpeg";
-    }else if(Type == "no"){
-        Type = "png";
-    }else{
-        Type = "png";
+    if(Content == "hello"){
+        Speak();
     }
 }
+    
+    
 function Speak(){
     var synthesize = window.speechSynthesis;
-    sd = document.getElementById("textbox").value;
+    sd = "Taking Snapshot in 10 secs. Please give your pose now.";
     var Ut = new SpeechSynthesisUtterance(sd);
     synthesize.speak(Ut);
+    
     Webcam.attach(camera);
+    setTimeout(function() {
+        SnapShot();
+        Save();
+    }, 10000);
 }
-
 Webcam.set({
-    width:"350",
-    height:"240",
-    image_format:"png",
-    png_quality:90
+    width:Width,
+    height:Height,
+    image_format:Type,
+    png_quality:100
 });
 camera = document.getElementById("camera");
+function SnapShot(){
+    Webcam.snap(function(data_uri){
+        document.getElementById("result").innerHTML = "<img src = '"+ data_uri + "' class = 'Imgs' id = 'CapturedImage'>";
+    });
+}
+function Save(){
+    link = document.getElementById("link");
+    IUrl = document.getElementById("CapturedImage").src;
+    link.href = IUrl;
+    link.click();
+}
